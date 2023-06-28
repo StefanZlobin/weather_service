@@ -39,6 +39,8 @@ dependencies:
   retrofit: ^3.3.1
   # Google fonts
   google_fonts: ^5.1.0
+  # SVG
+  flutter_svg: ^2.0.7
 
 dev_dependencies:
   flutter_test:
@@ -49,7 +51,24 @@ dev_dependencies:
   freezed: ^2.3.5
   json_serializable: ^6.7.0
   go_router_builder: ^2.2.0
+  flutter_gen_runner: ^5.3.1
+
+flutter_gen:
+  output: lib/gen/ # Optional (default: lib/gen/)
+  line_length: 120 # Optional (default: 80)
+
+  # Optional
+  integrations:
+    flutter_svg: true
+    flare_flutter: true
+    rive: true
+    lottie: true
 
 flutter:
   uses-material-design: true
   generate: true
+
+  assets:
+    - assets/
+    - assets/images/
+    - assets/icons/
