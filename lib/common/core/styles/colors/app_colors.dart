@@ -14,12 +14,13 @@ abstract class AppColors {
   static const kSideWeatherBackground = Color(0xFFBD87FF);
 
   // App colors.
-  static const Color kTitle = Color(0xFFD2D2D2);
-  static const Color kSubtitle = Color(0xFFEBEBEB);
+  static const Color kTitle = Color(0xFF2B2D33);
+  static const Color kSubtitle = Color(0xFF8999A5);
   static const Color kError = Colors.red;
   static const Color kCard = Color.fromRGBO(255, 255, 255, .2);
 
   // App states colors
+  static const kTextFormEnabledBorder = Color(0xFFE4E6EC);
 
   // App gradient wallet colors
 }

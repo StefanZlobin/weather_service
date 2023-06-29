@@ -12,7 +12,7 @@ class AppRouter {
   final AppRouteObserver _appRouteObserver = AppRouteObserver();
 
   late final _goRouter = GoRouter(
-    initialLocation: AppRoutesEnum.splash.routeToPath,
+    initialLocation: AppRoutesEnum.auth.routeToPath,
     observers: [_appRouteObserver],
     routes: <GoRoute>[...routes.publicRoutes],
   );
