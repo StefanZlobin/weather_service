@@ -1,6 +1,6 @@
 import 'package:weather_service/common/core/utils/extensions/adapter_weather_mapper.dart';
 import 'package:weather_service/features/weather/data/adapter/adapter_weather.dart';
-import 'package:weather_service/features/weather/domain/db/local_storage.dart';
+import 'package:weather_service/common/domain/db/local_storage.dart';
 import 'package:weather_service/features/weather/domain/entities/weather/weather.dart';
 
 class WeatherLocalClient {

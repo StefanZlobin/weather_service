@@ -4,6 +4,8 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:weather_service/common/core/service_locator/service_locator.dart';
+import 'package:weather_service/features/geolocation/domain/entities/geolocation/geolocation.dart';
+import 'package:weather_service/features/geolocation/domain/entities/placemarks/placemarks.dart';
 import 'package:weather_service/features/geolocation/presentation/blocs/geolocation/geolocation_bloc.dart';
 import 'package:weather_service/features/weather/data/adapter/adapter_weather.dart';
 import 'package:weather_service/features/weather/data/adapter/adapter_weather_description.dart';
@@ -27,6 +29,8 @@ Future<void> init() async {
   Hive.registerAdapter(AdapterWeatherMainDataAdapter());
   Hive.registerAdapter(AdapterWeatherWindAdapter());
   Hive.registerAdapter(AdapterWeatherRainAdapter());
+  Hive.registerAdapter(GeolocationAdapter());
+  Hive.registerAdapter(PlacemarksAdapter());
 
   /// Инициализация Firebase
   Platform.isAndroid

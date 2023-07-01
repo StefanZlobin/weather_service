@@ -19,19 +19,19 @@ mixin _$GeolocationEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() onGeolocationRequest,
-    required TResult Function(Position position) onGeolocationSet,
+    required TResult Function(Geolocation position) onGeolocationSet,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? onGeolocationRequest,
-    TResult? Function(Position position)? onGeolocationSet,
+    TResult? Function(Geolocation position)? onGeolocationSet,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? onGeolocationRequest,
-    TResult Function(Position position)? onGeolocationSet,
+    TResult Function(Geolocation position)? onGeolocationSet,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -123,7 +123,7 @@ class _$_GeolocationEventOnGeolocationRequest
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() onGeolocationRequest,
-    required TResult Function(Position position) onGeolocationSet,
+    required TResult Function(Geolocation position) onGeolocationSet,
   }) {
     return onGeolocationRequest();
   }
@@ -132,7 +132,7 @@ class _$_GeolocationEventOnGeolocationRequest
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? onGeolocationRequest,
-    TResult? Function(Position position)? onGeolocationSet,
+    TResult? Function(Geolocation position)? onGeolocationSet,
   }) {
     return onGeolocationRequest?.call();
   }
@@ -141,7 +141,7 @@ class _$_GeolocationEventOnGeolocationRequest
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? onGeolocationRequest,
-    TResult Function(Position position)? onGeolocationSet,
+    TResult Function(Geolocation position)? onGeolocationSet,
     required TResult orElse(),
   }) {
     if (onGeolocationRequest != null) {
@@ -200,7 +200,9 @@ abstract class _$$_GeolocationEventOnGeolocationSetCopyWith<$Res> {
           $Res Function(_$_GeolocationEventOnGeolocationSet) then) =
       __$$_GeolocationEventOnGeolocationSetCopyWithImpl<$Res>;
   @useResult
-  $Res call({Position position});
+  $Res call({Geolocation position});
+
+  $GeolocationCopyWith<$Res> get position;
 }
 
 /// @nodoc
@@ -222,8 +224,16 @@ class __$$_GeolocationEventOnGeolocationSetCopyWithImpl<$Res>
       position: null == position
           ? _value.position
           : position // ignore: cast_nullable_to_non_nullable
-              as Position,
+              as Geolocation,
     ));
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $GeolocationCopyWith<$Res> get position {
+    return $GeolocationCopyWith<$Res>(_value.position, (value) {
+      return _then(_value.copyWith(position: value));
+    });
   }
 }
 
@@ -234,7 +244,7 @@ class _$_GeolocationEventOnGeolocationSet
   const _$_GeolocationEventOnGeolocationSet({required this.position});
 
   @override
-  final Position position;
+  final Geolocation position;
 
   @override
   String toString() {
@@ -265,7 +275,7 @@ class _$_GeolocationEventOnGeolocationSet
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() onGeolocationRequest,
-    required TResult Function(Position position) onGeolocationSet,
+    required TResult Function(Geolocation position) onGeolocationSet,
   }) {
     return onGeolocationSet(position);
   }
@@ -274,7 +284,7 @@ class _$_GeolocationEventOnGeolocationSet
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? onGeolocationRequest,
-    TResult? Function(Position position)? onGeolocationSet,
+    TResult? Function(Geolocation position)? onGeolocationSet,
   }) {
     return onGeolocationSet?.call(position);
   }
@@ -283,7 +293,7 @@ class _$_GeolocationEventOnGeolocationSet
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? onGeolocationRequest,
-    TResult Function(Position position)? onGeolocationSet,
+    TResult Function(Geolocation position)? onGeolocationSet,
     required TResult orElse(),
   }) {
     if (onGeolocationSet != null) {
@@ -331,9 +341,10 @@ class _$_GeolocationEventOnGeolocationSet
 
 abstract class _GeolocationEventOnGeolocationSet implements GeolocationEvent {
   const factory _GeolocationEventOnGeolocationSet(
-      {required final Position position}) = _$_GeolocationEventOnGeolocationSet;
+          {required final Geolocation position}) =
+      _$_GeolocationEventOnGeolocationSet;
 
-  Position get position;
+  Geolocation get position;
   @JsonKey(ignore: true)
   _$$_GeolocationEventOnGeolocationSetCopyWith<
           _$_GeolocationEventOnGeolocationSet>

@@ -1,15 +1,27 @@
 import 'dart:async';
 
+import 'package:connectivity_plus/connectivity_plus.dart';
+import 'package:geocoding/geocoding.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:rxdart/rxdart.dart';
+import 'package:weather_service/common/core/utils/extensions/placemark_extension.dart';
+import 'package:weather_service/common/core/utils/extensions/position_extension.dart';
+import 'package:weather_service/common/core/utils/functions/check_network_connect.dart';
+import 'package:weather_service/features/geolocation/data/source/local_data_source/geolocation_local_client.dart';
+import 'package:weather_service/features/geolocation/domain/entities/geolocation/geolocation.dart';
+import 'package:weather_service/features/geolocation/domain/entities/placemarks/placemarks.dart';
 import 'package:weather_service/features/geolocation/domain/repositories/geolocation_repository.dart';
 
 class GeolocationRepositoryImpl implements GeolocationRepository {
-  final BehaviorSubject<Position> _locationController =
+  GeolocationRepositoryImpl(this._geolocationLocalClient);
+
+  final GeolocationLocalClient _geolocationLocalClient;
+
+  final BehaviorSubject<Geolocation> _locationController =
       BehaviorSubject(sync: true);
-  Function(Position) get updateLocation => _locationController.sink.add;
+  Function(Geolocation) get updateLocation => _locationController.sink.add;
   @override
-  Stream<Position> get location => _locationController;
+  Stream<Geolocation> get location => _locationController;
 
   Future<void> _checkPermission() async {
     if (await _checkServiceLocation()) {
@@ -39,26 +51,62 @@ class GeolocationRepositoryImpl implements GeolocationRepository {
   }
 
   @override
-  Future<Position> getCurrentLocation() async {
+  Future<Geolocation> getCurrentLocation() async {
     await _checkPermission();
 
-    final pos = await Geolocator.getCurrentPosition();
-    updateLocation(pos);
+    Geolocation? pos;
 
+    final networkConnection = await checkConnectToNetwork();
+
+    if (networkConnection == ConnectivityResult.mobile ||
+        networkConnection == ConnectivityResult.wifi) {
+      final res = await Geolocator.getCurrentPosition();
+      pos = res.toGeolocation;
+      await _geolocationLocalClient.write(
+          index: 0, position: pos, placemark: null);
+    } else {
+      pos = await _geolocationLocalClient.read();
+    }
+
+    updateLocation(pos);
     return pos;
   }
 
   @override
-  Future<Position?> getLastKnownLocation() async {
+  Future<Geolocation?> getLastKnownLocation() async {
     await _checkPermission();
 
     final pos = await Geolocator.getLastKnownPosition();
 
     if (pos != null) {
-      updateLocation(pos);
+      updateLocation(pos.toGeolocation);
     }
 
-    return pos;
+    return pos?.toGeolocation;
+  }
+
+  @override
+  Future<Placemarks> getPlacemarkFromCoordinates({
+    required Geolocation geolocation,
+  }) async {
+    final networkConnection = await checkConnectToNetwork();
+
+    if (networkConnection == ConnectivityResult.mobile ||
+        networkConnection == ConnectivityResult.wifi) {
+      final placemarks = await placemarkFromCoordinates(
+        geolocation.latitude,
+        geolocation.longitude,
+      );
+      await _geolocationLocalClient.write(
+        index: 1,
+        position: null,
+        placemark: placemarks.first.toEntity,
+      );
+
+      return placemarks.first.toEntity;
+    } else {
+      return await _geolocationLocalClient.readPlacemarks();
+    }
   }
 
   @override
