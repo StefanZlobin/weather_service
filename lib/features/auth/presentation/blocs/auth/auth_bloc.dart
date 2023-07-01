@@ -1,5 +1,6 @@
 // ignore_for_file: library_private_types_in_public_api
 
+import 'dart:async';
 import 'dart:developer';
 
 import 'package:bloc/bloc.dart';
@@ -12,6 +13,7 @@ import 'package:weather_service/features/auth/domain/entities/user/user.dart'
 import 'package:weather_service/features/auth/domain/models/email.dart';
 import 'package:weather_service/features/auth/domain/models/password.dart';
 import 'package:weather_service/features/auth/domain/repositories/auth_repository.dart';
+import 'package:weather_service/features/auth/presentation/blocs/is_loading/is_loading_bloc.dart';
 
 part 'auth_bloc.freezed.dart';
 part 'auth_event.dart';
@@ -22,6 +24,8 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     on<_AuthEventOnEmailChanged>(_onAuthEventOnEmailChanged);
     on<_AuthEventOnPasswordChanged>(_onAuthEventOnPasswordChanged);
     on<_AuthEventOnLoginSubmitted>(_onAuthEventOnLoginSubmitted);
+    on<_AuthEventOnRegisterSubmitted>(_onAuthEventOnRegisterSubmitted);
+    on<_AuthEventOnRefreshState>(_onAuthEventOnRefreshState);
   }
 
   _AuthStateInitial get currentState => state.maybeMap(
@@ -67,6 +71,8 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     _AuthEventOnLoginSubmitted event,
     Emitter<AuthState> emit,
   ) async {
+    getIt<IsLoadingBloc>().add(const IsLoadingEvent.onLoading());
+
     try {
       final user = u.User(
         email: currentState.email.value,
@@ -80,9 +86,45 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
         password: user.password,
       );
 
+      await Future<void>.delayed(const Duration(milliseconds: 300));
+
       emit(currentState.copyWith(status: FormzSubmissionStatus.success));
-    } on Exception catch (e, st) {
-      print('$e, $st');
+    } on Exception catch (e) {
+      await Future<void>.delayed(const Duration(milliseconds: 300));
+
+      emit(AuthState.error(error: e.toString()));
     }
+  }
+
+  Future<void> _onAuthEventOnRegisterSubmitted(
+    _AuthEventOnRegisterSubmitted event,
+    Emitter<AuthState> emit,
+  ) async {
+    getIt<IsLoadingBloc>().add(const IsLoadingEvent.onLoading());
+
+    try {
+      final user = u.User(
+        email: currentState.email.value,
+        password: currentState.password.value,
+      );
+
+      log(user.toString());
+
+      await getIt<AuthRepository>().registerWithEmailAndPassword(
+        email: user.email,
+        password: user.password,
+      );
+
+      emit(currentState.copyWith(status: FormzSubmissionStatus.success));
+    } on Exception catch (e) {
+      emit(AuthState.error(error: e.toString()));
+    }
+  }
+
+  void _onAuthEventOnRefreshState(
+    _AuthEventOnRefreshState event,
+    Emitter<AuthState> emit,
+  ) {
+    emit(const AuthState.initial());
   }
 }

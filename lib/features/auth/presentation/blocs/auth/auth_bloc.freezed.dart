@@ -21,6 +21,8 @@ mixin _$AuthEvent {
     required TResult Function(String email) onEmailChanged,
     required TResult Function(String password) onPasswordChanged,
     required TResult Function() onLoginSubmitted,
+    required TResult Function() onRegisterSubmitted,
+    required TResult Function() onRefreshState,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -28,6 +30,8 @@ mixin _$AuthEvent {
     TResult? Function(String email)? onEmailChanged,
     TResult? Function(String password)? onPasswordChanged,
     TResult? Function()? onLoginSubmitted,
+    TResult? Function()? onRegisterSubmitted,
+    TResult? Function()? onRefreshState,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -35,6 +39,8 @@ mixin _$AuthEvent {
     TResult Function(String email)? onEmailChanged,
     TResult Function(String password)? onPasswordChanged,
     TResult Function()? onLoginSubmitted,
+    TResult Function()? onRegisterSubmitted,
+    TResult Function()? onRefreshState,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -45,6 +51,9 @@ mixin _$AuthEvent {
         onPasswordChanged,
     required TResult Function(_AuthEventOnLoginSubmitted value)
         onLoginSubmitted,
+    required TResult Function(_AuthEventOnRegisterSubmitted value)
+        onRegisterSubmitted,
+    required TResult Function(_AuthEventOnRefreshState value) onRefreshState,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -52,6 +61,8 @@ mixin _$AuthEvent {
     TResult? Function(_AuthEventOnEmailChanged value)? onEmailChanged,
     TResult? Function(_AuthEventOnPasswordChanged value)? onPasswordChanged,
     TResult? Function(_AuthEventOnLoginSubmitted value)? onLoginSubmitted,
+    TResult? Function(_AuthEventOnRegisterSubmitted value)? onRegisterSubmitted,
+    TResult? Function(_AuthEventOnRefreshState value)? onRefreshState,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -59,6 +70,8 @@ mixin _$AuthEvent {
     TResult Function(_AuthEventOnEmailChanged value)? onEmailChanged,
     TResult Function(_AuthEventOnPasswordChanged value)? onPasswordChanged,
     TResult Function(_AuthEventOnLoginSubmitted value)? onLoginSubmitted,
+    TResult Function(_AuthEventOnRegisterSubmitted value)? onRegisterSubmitted,
+    TResult Function(_AuthEventOnRefreshState value)? onRefreshState,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -150,6 +163,8 @@ class _$_AuthEventOnEmailChanged implements _AuthEventOnEmailChanged {
     required TResult Function(String email) onEmailChanged,
     required TResult Function(String password) onPasswordChanged,
     required TResult Function() onLoginSubmitted,
+    required TResult Function() onRegisterSubmitted,
+    required TResult Function() onRefreshState,
   }) {
     return onEmailChanged(email);
   }
@@ -160,6 +175,8 @@ class _$_AuthEventOnEmailChanged implements _AuthEventOnEmailChanged {
     TResult? Function(String email)? onEmailChanged,
     TResult? Function(String password)? onPasswordChanged,
     TResult? Function()? onLoginSubmitted,
+    TResult? Function()? onRegisterSubmitted,
+    TResult? Function()? onRefreshState,
   }) {
     return onEmailChanged?.call(email);
   }
@@ -170,6 +187,8 @@ class _$_AuthEventOnEmailChanged implements _AuthEventOnEmailChanged {
     TResult Function(String email)? onEmailChanged,
     TResult Function(String password)? onPasswordChanged,
     TResult Function()? onLoginSubmitted,
+    TResult Function()? onRegisterSubmitted,
+    TResult Function()? onRefreshState,
     required TResult orElse(),
   }) {
     if (onEmailChanged != null) {
@@ -186,6 +205,9 @@ class _$_AuthEventOnEmailChanged implements _AuthEventOnEmailChanged {
         onPasswordChanged,
     required TResult Function(_AuthEventOnLoginSubmitted value)
         onLoginSubmitted,
+    required TResult Function(_AuthEventOnRegisterSubmitted value)
+        onRegisterSubmitted,
+    required TResult Function(_AuthEventOnRefreshState value) onRefreshState,
   }) {
     return onEmailChanged(this);
   }
@@ -196,6 +218,8 @@ class _$_AuthEventOnEmailChanged implements _AuthEventOnEmailChanged {
     TResult? Function(_AuthEventOnEmailChanged value)? onEmailChanged,
     TResult? Function(_AuthEventOnPasswordChanged value)? onPasswordChanged,
     TResult? Function(_AuthEventOnLoginSubmitted value)? onLoginSubmitted,
+    TResult? Function(_AuthEventOnRegisterSubmitted value)? onRegisterSubmitted,
+    TResult? Function(_AuthEventOnRefreshState value)? onRefreshState,
   }) {
     return onEmailChanged?.call(this);
   }
@@ -206,6 +230,8 @@ class _$_AuthEventOnEmailChanged implements _AuthEventOnEmailChanged {
     TResult Function(_AuthEventOnEmailChanged value)? onEmailChanged,
     TResult Function(_AuthEventOnPasswordChanged value)? onPasswordChanged,
     TResult Function(_AuthEventOnLoginSubmitted value)? onLoginSubmitted,
+    TResult Function(_AuthEventOnRegisterSubmitted value)? onRegisterSubmitted,
+    TResult Function(_AuthEventOnRefreshState value)? onRefreshState,
     required TResult orElse(),
   }) {
     if (onEmailChanged != null) {
@@ -296,6 +322,8 @@ class _$_AuthEventOnPasswordChanged implements _AuthEventOnPasswordChanged {
     required TResult Function(String email) onEmailChanged,
     required TResult Function(String password) onPasswordChanged,
     required TResult Function() onLoginSubmitted,
+    required TResult Function() onRegisterSubmitted,
+    required TResult Function() onRefreshState,
   }) {
     return onPasswordChanged(password);
   }
@@ -306,6 +334,8 @@ class _$_AuthEventOnPasswordChanged implements _AuthEventOnPasswordChanged {
     TResult? Function(String email)? onEmailChanged,
     TResult? Function(String password)? onPasswordChanged,
     TResult? Function()? onLoginSubmitted,
+    TResult? Function()? onRegisterSubmitted,
+    TResult? Function()? onRefreshState,
   }) {
     return onPasswordChanged?.call(password);
   }
@@ -316,6 +346,8 @@ class _$_AuthEventOnPasswordChanged implements _AuthEventOnPasswordChanged {
     TResult Function(String email)? onEmailChanged,
     TResult Function(String password)? onPasswordChanged,
     TResult Function()? onLoginSubmitted,
+    TResult Function()? onRegisterSubmitted,
+    TResult Function()? onRefreshState,
     required TResult orElse(),
   }) {
     if (onPasswordChanged != null) {
@@ -332,6 +364,9 @@ class _$_AuthEventOnPasswordChanged implements _AuthEventOnPasswordChanged {
         onPasswordChanged,
     required TResult Function(_AuthEventOnLoginSubmitted value)
         onLoginSubmitted,
+    required TResult Function(_AuthEventOnRegisterSubmitted value)
+        onRegisterSubmitted,
+    required TResult Function(_AuthEventOnRefreshState value) onRefreshState,
   }) {
     return onPasswordChanged(this);
   }
@@ -342,6 +377,8 @@ class _$_AuthEventOnPasswordChanged implements _AuthEventOnPasswordChanged {
     TResult? Function(_AuthEventOnEmailChanged value)? onEmailChanged,
     TResult? Function(_AuthEventOnPasswordChanged value)? onPasswordChanged,
     TResult? Function(_AuthEventOnLoginSubmitted value)? onLoginSubmitted,
+    TResult? Function(_AuthEventOnRegisterSubmitted value)? onRegisterSubmitted,
+    TResult? Function(_AuthEventOnRefreshState value)? onRefreshState,
   }) {
     return onPasswordChanged?.call(this);
   }
@@ -352,6 +389,8 @@ class _$_AuthEventOnPasswordChanged implements _AuthEventOnPasswordChanged {
     TResult Function(_AuthEventOnEmailChanged value)? onEmailChanged,
     TResult Function(_AuthEventOnPasswordChanged value)? onPasswordChanged,
     TResult Function(_AuthEventOnLoginSubmitted value)? onLoginSubmitted,
+    TResult Function(_AuthEventOnRegisterSubmitted value)? onRegisterSubmitted,
+    TResult Function(_AuthEventOnRefreshState value)? onRefreshState,
     required TResult orElse(),
   }) {
     if (onPasswordChanged != null) {
@@ -415,6 +454,8 @@ class _$_AuthEventOnLoginSubmitted implements _AuthEventOnLoginSubmitted {
     required TResult Function(String email) onEmailChanged,
     required TResult Function(String password) onPasswordChanged,
     required TResult Function() onLoginSubmitted,
+    required TResult Function() onRegisterSubmitted,
+    required TResult Function() onRefreshState,
   }) {
     return onLoginSubmitted();
   }
@@ -425,6 +466,8 @@ class _$_AuthEventOnLoginSubmitted implements _AuthEventOnLoginSubmitted {
     TResult? Function(String email)? onEmailChanged,
     TResult? Function(String password)? onPasswordChanged,
     TResult? Function()? onLoginSubmitted,
+    TResult? Function()? onRegisterSubmitted,
+    TResult? Function()? onRefreshState,
   }) {
     return onLoginSubmitted?.call();
   }
@@ -435,6 +478,8 @@ class _$_AuthEventOnLoginSubmitted implements _AuthEventOnLoginSubmitted {
     TResult Function(String email)? onEmailChanged,
     TResult Function(String password)? onPasswordChanged,
     TResult Function()? onLoginSubmitted,
+    TResult Function()? onRegisterSubmitted,
+    TResult Function()? onRefreshState,
     required TResult orElse(),
   }) {
     if (onLoginSubmitted != null) {
@@ -451,6 +496,9 @@ class _$_AuthEventOnLoginSubmitted implements _AuthEventOnLoginSubmitted {
         onPasswordChanged,
     required TResult Function(_AuthEventOnLoginSubmitted value)
         onLoginSubmitted,
+    required TResult Function(_AuthEventOnRegisterSubmitted value)
+        onRegisterSubmitted,
+    required TResult Function(_AuthEventOnRefreshState value) onRefreshState,
   }) {
     return onLoginSubmitted(this);
   }
@@ -461,6 +509,8 @@ class _$_AuthEventOnLoginSubmitted implements _AuthEventOnLoginSubmitted {
     TResult? Function(_AuthEventOnEmailChanged value)? onEmailChanged,
     TResult? Function(_AuthEventOnPasswordChanged value)? onPasswordChanged,
     TResult? Function(_AuthEventOnLoginSubmitted value)? onLoginSubmitted,
+    TResult? Function(_AuthEventOnRegisterSubmitted value)? onRegisterSubmitted,
+    TResult? Function(_AuthEventOnRefreshState value)? onRefreshState,
   }) {
     return onLoginSubmitted?.call(this);
   }
@@ -471,6 +521,8 @@ class _$_AuthEventOnLoginSubmitted implements _AuthEventOnLoginSubmitted {
     TResult Function(_AuthEventOnEmailChanged value)? onEmailChanged,
     TResult Function(_AuthEventOnPasswordChanged value)? onPasswordChanged,
     TResult Function(_AuthEventOnLoginSubmitted value)? onLoginSubmitted,
+    TResult Function(_AuthEventOnRegisterSubmitted value)? onRegisterSubmitted,
+    TResult Function(_AuthEventOnRefreshState value)? onRefreshState,
     required TResult orElse(),
   }) {
     if (onLoginSubmitted != null) {
@@ -482,6 +534,257 @@ class _$_AuthEventOnLoginSubmitted implements _AuthEventOnLoginSubmitted {
 
 abstract class _AuthEventOnLoginSubmitted implements AuthEvent {
   const factory _AuthEventOnLoginSubmitted() = _$_AuthEventOnLoginSubmitted;
+}
+
+/// @nodoc
+abstract class _$$_AuthEventOnRegisterSubmittedCopyWith<$Res> {
+  factory _$$_AuthEventOnRegisterSubmittedCopyWith(
+          _$_AuthEventOnRegisterSubmitted value,
+          $Res Function(_$_AuthEventOnRegisterSubmitted) then) =
+      __$$_AuthEventOnRegisterSubmittedCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$_AuthEventOnRegisterSubmittedCopyWithImpl<$Res>
+    extends _$AuthEventCopyWithImpl<$Res, _$_AuthEventOnRegisterSubmitted>
+    implements _$$_AuthEventOnRegisterSubmittedCopyWith<$Res> {
+  __$$_AuthEventOnRegisterSubmittedCopyWithImpl(
+      _$_AuthEventOnRegisterSubmitted _value,
+      $Res Function(_$_AuthEventOnRegisterSubmitted) _then)
+      : super(_value, _then);
+}
+
+/// @nodoc
+
+class _$_AuthEventOnRegisterSubmitted implements _AuthEventOnRegisterSubmitted {
+  const _$_AuthEventOnRegisterSubmitted();
+
+  @override
+  String toString() {
+    return 'AuthEvent.onRegisterSubmitted()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$_AuthEventOnRegisterSubmitted);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(String email) onEmailChanged,
+    required TResult Function(String password) onPasswordChanged,
+    required TResult Function() onLoginSubmitted,
+    required TResult Function() onRegisterSubmitted,
+    required TResult Function() onRefreshState,
+  }) {
+    return onRegisterSubmitted();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(String email)? onEmailChanged,
+    TResult? Function(String password)? onPasswordChanged,
+    TResult? Function()? onLoginSubmitted,
+    TResult? Function()? onRegisterSubmitted,
+    TResult? Function()? onRefreshState,
+  }) {
+    return onRegisterSubmitted?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(String email)? onEmailChanged,
+    TResult Function(String password)? onPasswordChanged,
+    TResult Function()? onLoginSubmitted,
+    TResult Function()? onRegisterSubmitted,
+    TResult Function()? onRefreshState,
+    required TResult orElse(),
+  }) {
+    if (onRegisterSubmitted != null) {
+      return onRegisterSubmitted();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_AuthEventOnEmailChanged value) onEmailChanged,
+    required TResult Function(_AuthEventOnPasswordChanged value)
+        onPasswordChanged,
+    required TResult Function(_AuthEventOnLoginSubmitted value)
+        onLoginSubmitted,
+    required TResult Function(_AuthEventOnRegisterSubmitted value)
+        onRegisterSubmitted,
+    required TResult Function(_AuthEventOnRefreshState value) onRefreshState,
+  }) {
+    return onRegisterSubmitted(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_AuthEventOnEmailChanged value)? onEmailChanged,
+    TResult? Function(_AuthEventOnPasswordChanged value)? onPasswordChanged,
+    TResult? Function(_AuthEventOnLoginSubmitted value)? onLoginSubmitted,
+    TResult? Function(_AuthEventOnRegisterSubmitted value)? onRegisterSubmitted,
+    TResult? Function(_AuthEventOnRefreshState value)? onRefreshState,
+  }) {
+    return onRegisterSubmitted?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_AuthEventOnEmailChanged value)? onEmailChanged,
+    TResult Function(_AuthEventOnPasswordChanged value)? onPasswordChanged,
+    TResult Function(_AuthEventOnLoginSubmitted value)? onLoginSubmitted,
+    TResult Function(_AuthEventOnRegisterSubmitted value)? onRegisterSubmitted,
+    TResult Function(_AuthEventOnRefreshState value)? onRefreshState,
+    required TResult orElse(),
+  }) {
+    if (onRegisterSubmitted != null) {
+      return onRegisterSubmitted(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _AuthEventOnRegisterSubmitted implements AuthEvent {
+  const factory _AuthEventOnRegisterSubmitted() =
+      _$_AuthEventOnRegisterSubmitted;
+}
+
+/// @nodoc
+abstract class _$$_AuthEventOnRefreshStateCopyWith<$Res> {
+  factory _$$_AuthEventOnRefreshStateCopyWith(_$_AuthEventOnRefreshState value,
+          $Res Function(_$_AuthEventOnRefreshState) then) =
+      __$$_AuthEventOnRefreshStateCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$_AuthEventOnRefreshStateCopyWithImpl<$Res>
+    extends _$AuthEventCopyWithImpl<$Res, _$_AuthEventOnRefreshState>
+    implements _$$_AuthEventOnRefreshStateCopyWith<$Res> {
+  __$$_AuthEventOnRefreshStateCopyWithImpl(_$_AuthEventOnRefreshState _value,
+      $Res Function(_$_AuthEventOnRefreshState) _then)
+      : super(_value, _then);
+}
+
+/// @nodoc
+
+class _$_AuthEventOnRefreshState implements _AuthEventOnRefreshState {
+  const _$_AuthEventOnRefreshState();
+
+  @override
+  String toString() {
+    return 'AuthEvent.onRefreshState()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$_AuthEventOnRefreshState);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(String email) onEmailChanged,
+    required TResult Function(String password) onPasswordChanged,
+    required TResult Function() onLoginSubmitted,
+    required TResult Function() onRegisterSubmitted,
+    required TResult Function() onRefreshState,
+  }) {
+    return onRefreshState();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(String email)? onEmailChanged,
+    TResult? Function(String password)? onPasswordChanged,
+    TResult? Function()? onLoginSubmitted,
+    TResult? Function()? onRegisterSubmitted,
+    TResult? Function()? onRefreshState,
+  }) {
+    return onRefreshState?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(String email)? onEmailChanged,
+    TResult Function(String password)? onPasswordChanged,
+    TResult Function()? onLoginSubmitted,
+    TResult Function()? onRegisterSubmitted,
+    TResult Function()? onRefreshState,
+    required TResult orElse(),
+  }) {
+    if (onRefreshState != null) {
+      return onRefreshState();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_AuthEventOnEmailChanged value) onEmailChanged,
+    required TResult Function(_AuthEventOnPasswordChanged value)
+        onPasswordChanged,
+    required TResult Function(_AuthEventOnLoginSubmitted value)
+        onLoginSubmitted,
+    required TResult Function(_AuthEventOnRegisterSubmitted value)
+        onRegisterSubmitted,
+    required TResult Function(_AuthEventOnRefreshState value) onRefreshState,
+  }) {
+    return onRefreshState(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_AuthEventOnEmailChanged value)? onEmailChanged,
+    TResult? Function(_AuthEventOnPasswordChanged value)? onPasswordChanged,
+    TResult? Function(_AuthEventOnLoginSubmitted value)? onLoginSubmitted,
+    TResult? Function(_AuthEventOnRegisterSubmitted value)? onRegisterSubmitted,
+    TResult? Function(_AuthEventOnRefreshState value)? onRefreshState,
+  }) {
+    return onRefreshState?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_AuthEventOnEmailChanged value)? onEmailChanged,
+    TResult Function(_AuthEventOnPasswordChanged value)? onPasswordChanged,
+    TResult Function(_AuthEventOnLoginSubmitted value)? onLoginSubmitted,
+    TResult Function(_AuthEventOnRegisterSubmitted value)? onRegisterSubmitted,
+    TResult Function(_AuthEventOnRefreshState value)? onRefreshState,
+    required TResult orElse(),
+  }) {
+    if (onRefreshState != null) {
+      return onRefreshState(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _AuthEventOnRefreshState implements AuthEvent {
+  const factory _AuthEventOnRefreshState() = _$_AuthEventOnRefreshState;
 }
 
 /// @nodoc

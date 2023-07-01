@@ -9,4 +9,6 @@ class AuthEvent with _$AuthEvent {
     required String password,
   }) = _AuthEventOnPasswordChanged;
   const factory AuthEvent.onLoginSubmitted() = _AuthEventOnLoginSubmitted;
+  const factory AuthEvent.onRegisterSubmitted() = _AuthEventOnRegisterSubmitted;
+  const factory AuthEvent.onRefreshState() = _AuthEventOnRefreshState;
 }
