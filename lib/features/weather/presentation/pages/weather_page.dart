@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:weather_service/common/core/service_locator/service_locator.dart';
 import 'package:weather_service/common/core/styles/colors/app_colors.dart';
 import 'package:weather_service/features/weather/presentation/blocs/weather/weather_bloc.dart';
-import 'package:weather_service/features/weather/presentation/pages/widgets/geolocation_widget.dart';
+import 'package:weather_service/features/geolocation/presentation/shared/widgets/geolocation_widget.dart';
 import 'package:weather_service/features/weather/presentation/pages/widgets/humidity_wind_card.dart';
 import 'package:weather_service/features/weather/presentation/pages/widgets/short_weather_data.dart';
 import 'package:weather_service/features/weather/presentation/pages/widgets/weather_detailed_data.dart';
