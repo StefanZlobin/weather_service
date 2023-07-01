@@ -1,8 +1,8 @@
 import 'package:bloc/bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:geolocator/geolocator.dart';
 import 'package:weather_service/common/core/enum/units_measurement_enum.dart';
 import 'package:weather_service/common/core/service_locator/service_locator.dart';
+import 'package:weather_service/features/geolocation/domain/entities/geolocation/geolocation.dart';
 import 'package:weather_service/features/geolocation/domain/repositories/geolocation_repository.dart';
 import 'package:weather_service/features/weather/domain/entities/weather/weather.dart';
 import 'package:weather_service/features/weather/domain/repositories/weather_repository.dart';
@@ -17,7 +17,7 @@ class WeatherBloc extends Bloc<WeatherEvent, WeatherState> {
       _onWeatherEventOnRequestReceiveWeather,
     );
 
-    getIt<GeolocationRepository>().location.listen((Position position) {
+    getIt<GeolocationRepository>().location.listen((Geolocation position) {
       getIt<WeatherBloc>().add(WeatherEvent.onRequestReceiveWeather(
         lat: position.latitude,
         lon: position.longitude,

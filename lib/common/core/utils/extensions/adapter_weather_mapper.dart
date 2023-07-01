@@ -1,12 +1,11 @@
 import 'package:weather_service/common/core/enum/weather_type_enum.dart';
-import 'package:weather_service/features/weather/data/models/response/model_weather.dart';
+import 'package:weather_service/features/weather/data/adapter/adapter_weather.dart';
 import 'package:weather_service/features/weather/domain/entities/weather/weather.dart';
 import 'package:weather_service/features/weather/domain/entities/weather_description/weather_description.dart';
 import 'package:weather_service/features/weather/domain/entities/weather_main_data/weather_main_data.dart';
-import 'package:weather_service/features/weather/domain/entities/weather_rain/weather_rain.dart';
 import 'package:weather_service/features/weather/domain/entities/weather_wind/weather_wind.dart';
 
-extension WeatherMapper on ModelWeather {
+extension AdapterWeatherMapper on AdapterWeather {
   WeatherTypeEnum stringToEnum(String v) {
     switch (v) {
       case 'Thunderstorm':
@@ -42,14 +41,7 @@ extension WeatherMapper on ModelWeather {
           pressure: mainWeatherData.pressure,
           humidity: mainWeatherData.humidity,
         ),
-        wind: WeatherWind(
-          speed: wind.speed,
-          deg: wind.deg,
-          gust: wind.gust,
-        ),
-        rain: WeatherRain(
-          duration: rain == null ? null : rain!.duration,
-        ),
+        wind: WeatherWind(speed: wind.speed, deg: wind.deg, gust: wind.gust),
         dt: dt,
       );
 }

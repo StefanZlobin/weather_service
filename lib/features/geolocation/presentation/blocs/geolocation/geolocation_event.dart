@@ -5,6 +5,6 @@ class GeolocationEvent with _$GeolocationEvent {
   const factory GeolocationEvent.onGeolocationRequest() =
       _GeolocationEventOnGeolocationRequest;
   const factory GeolocationEvent.onGeolocationSet({
-    required Position position,
+    required Geolocation position,
   }) = _GeolocationEventOnGeolocationSet;
 }
