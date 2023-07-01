@@ -9,6 +9,8 @@ import 'package:weather_service/features/geolocation/data/repositories/geolocati
 import 'package:weather_service/features/geolocation/domain/repositories/geolocation_repository.dart';
 import 'package:weather_service/features/geolocation/presentation/blocs/geolocation/geolocation_bloc.dart';
 import 'package:weather_service/features/weather/data/repositories/weather_repository_impl.dart';
+import 'package:weather_service/features/weather/data/source/local_data_source/weather_local_client.dart';
+import 'package:weather_service/features/weather/domain/db/local_storage.dart';
 import 'package:weather_service/features/weather/domain/repositories/weather_repository.dart';
 import 'package:weather_service/features/weather/presentation/blocs/detailed_weather_card/detailed_weather_card_bloc.dart';
 import 'package:weather_service/features/weather/presentation/blocs/weather/weather_bloc.dart';
@@ -19,6 +21,7 @@ Future<void> setup() async {
   _registerDio();
   _registerBlocs();
   _registerRepositories();
+  _registerStorages();
 }
 
 void _registerDio() {
@@ -48,12 +51,16 @@ void _registerRepositories() {
 
   // Weather
   getIt.registerLazySingleton<WeatherRepository>(
-    () => WeatherRepositoryImpl(
-      getIt<Dio>(),
-    ),
+    () => WeatherRepositoryImpl(getIt<Dio>(), getIt<WeatherLocalClient>()),
   );
 
   // Geolocation
   getIt.registerLazySingleton<GeolocationRepository>(
       () => GeolocationRepositoryImpl());
+}
+
+void _registerStorages() {
+  // Weather
+  getIt.registerLazySingleton(
+      () => WeatherLocalClient(LocalStorage(Config.weatherStorage)));
 }
