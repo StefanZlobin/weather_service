@@ -6,7 +6,14 @@ import 'package:weather_service/common/core/styles/fonts/app_fonts.dart';
 import 'package:weather_service/features/auth/presentation/blocs/auth/auth_bloc.dart';
 
 class LoginButton extends StatelessWidget {
-  const LoginButton({super.key});
+  const LoginButton({
+    super.key,
+    required this.text,
+    required this.onPressed,
+  });
+
+  final String text;
+  final VoidCallback onPressed;
 
   @override
   Widget build(BuildContext context) {
@@ -20,12 +27,9 @@ class LoginButton extends StatelessWidget {
             initial: (email, password, isValid, status) {
               return FilledButton(
                   style: const ButtonStyle(),
-                  onPressed: isValid
-                      ? () => getIt<AuthBloc>()
-                          .add(const AuthEvent.onLoginSubmitted())
-                      : null,
+                  onPressed: isValid ? onPressed : null,
                   child: Text(
-                    'Войти',
+                    text,
                     style: AppTypography.kB1Bolt.apply(
                       color: AppColors.kBaseWhite,
                     ),

@@ -32,6 +32,25 @@ class AuthRepositoryImpl implements AuthRepository {
   }
 
   @override
+  Future<void> registerWithEmailAndPassword({
+    required String email,
+    required String password,
+  }) async {
+    try {
+      updateAuthStatus(AuthStatusEnum.loading);
+      await auth.createUserWithEmailAndPassword(
+        email: email,
+        password: password,
+      );
+      updateAuthStatus(AuthStatusEnum.authenticated);
+    } on Exception catch (e, st) {
+      print('$e, $st');
+      updateAuthStatus(AuthStatusEnum.error);
+      throw Exception(e);
+    }
+  }
+
+  @override
   FutureOr onDispose() {
     _authStatusController.close();
   }

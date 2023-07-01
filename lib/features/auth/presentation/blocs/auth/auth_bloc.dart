@@ -1,5 +1,6 @@
 // ignore_for_file: library_private_types_in_public_api
 
+import 'dart:async';
 import 'dart:developer';
 
 import 'package:bloc/bloc.dart';
@@ -22,6 +23,8 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     on<_AuthEventOnEmailChanged>(_onAuthEventOnEmailChanged);
     on<_AuthEventOnPasswordChanged>(_onAuthEventOnPasswordChanged);
     on<_AuthEventOnLoginSubmitted>(_onAuthEventOnLoginSubmitted);
+    on<_AuthEventOnRegisterSubmitted>(_onAuthEventOnRegisterSubmitted);
+    on<_AuthEventOnRefreshState>(_onAuthEventOnRefreshState);
   }
 
   _AuthStateInitial get currentState => state.maybeMap(
@@ -81,8 +84,38 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
       );
 
       emit(currentState.copyWith(status: FormzSubmissionStatus.success));
-    } on Exception catch (e, st) {
-      print('$e, $st');
+    } on Exception catch (e) {
+      emit(AuthState.error(error: e.toString()));
     }
+  }
+
+  Future<void> _onAuthEventOnRegisterSubmitted(
+    _AuthEventOnRegisterSubmitted event,
+    Emitter<AuthState> emit,
+  ) async {
+    try {
+      final user = u.User(
+        email: currentState.email.value,
+        password: currentState.password.value,
+      );
+
+      log(user.toString());
+
+      await getIt<AuthRepository>().registerWithEmailAndPassword(
+        email: user.email,
+        password: user.password,
+      );
+
+      emit(currentState.copyWith(status: FormzSubmissionStatus.success));
+    } on Exception catch (e) {
+      emit(AuthState.error(error: e.toString()));
+    }
+  }
+
+  void _onAuthEventOnRefreshState(
+    _AuthEventOnRefreshState event,
+    Emitter<AuthState> emit,
+  ) {
+    emit(const AuthState.initial());
   }
 }
