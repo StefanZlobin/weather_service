@@ -2,9 +2,8 @@ import 'dart:async';
 
 import 'package:bloc/bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:geocoding/geocoding.dart';
-import 'package:geolocator/geolocator.dart';
 import 'package:weather_service/common/core/service_locator/service_locator.dart';
+import 'package:weather_service/features/geolocation/domain/entities/geolocation/geolocation.dart';
 import 'package:weather_service/features/geolocation/domain/repositories/geolocation_repository.dart';
 
 part 'geolocation_bloc.freezed.dart';
@@ -41,12 +40,12 @@ class GeolocationBloc extends Bloc<GeolocationEvent, GeolocationState> {
     Emitter<GeolocationState> emit,
   ) async {
     try {
-      final placemarks = await placemarkFromCoordinates(
-          event.position.latitude, event.position.longitude);
+      final placemarks = await getIt<GeolocationRepository>()
+          .getPlacemarkFromCoordinates(geolocation: event.position);
 
       emit(GeolocationState.loaded(
-        city: placemarks.first.locality ?? 'Не удалось определить',
-        country: placemarks.first.country ?? 'Не удалось определить',
+        city: placemarks.city,
+        country: placemarks.country,
       ));
     } on Exception catch (e) {
       emit(GeolocationState.error(error: e.toString()));

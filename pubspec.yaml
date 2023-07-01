@@ -48,6 +48,12 @@ dependencies:
   angles: ^2.1.1
   # Network connect
   connectivity_plus: ^4.0.1
+  # Hive
+  hive: ^2.2.3
+  hive_flutter: ^1.1.0
+  # SQLite
+  sqflite: ^2.2.8+4
+  path: ^1.8.3
 
   #Animated native splash screen
   #aka Stefan
@@ -67,6 +73,7 @@ dev_dependencies:
   go_router_builder: ^2.2.0
   flutter_gen_runner: ^5.3.1
   retrofit_generator: ^4.2.0
+  hive_generator: ^2.0.0
 
 flutter_gen:
   output: lib/gen/ # Optional (default: lib/gen/)
