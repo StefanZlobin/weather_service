@@ -5,6 +5,7 @@ import 'dart:developer';
 import 'package:bloc/bloc.dart';
 import 'package:formz/formz.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:weather_service/common/core/enum/auth_status_enum.dart';
 import 'package:weather_service/common/core/service_locator/service_locator.dart';
 import 'package:weather_service/features/auth/domain/entities/user/user.dart'
     as u;
@@ -27,6 +28,8 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
         initial: (s) => s,
         orElse: () => const _AuthStateInitial(),
       );
+
+  Stream<AuthStatusEnum> get authStatus => getIt<AuthRepository>().authStatus;
 
   void _onAuthEventOnEmailChanged(
     _AuthEventOnEmailChanged event,
@@ -73,7 +76,11 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
       log(user.toString());
 
       await getIt<AuthRepository>().loginWithEmailAndPassword(
-          email: user.email, password: user.password);
+        email: user.email,
+        password: user.password,
+      );
+
+      emit(currentState.copyWith(status: FormzSubmissionStatus.success));
     } on Exception catch (e, st) {
       print('$e, $st');
     }
