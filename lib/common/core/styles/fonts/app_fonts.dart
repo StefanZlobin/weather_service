@@ -8,6 +8,12 @@ abstract class AppTypography {
     fontWeight: FontWeight.w500,
   );
 
+  static final kH1Bolt = GoogleFonts.ubuntu(
+    fontSize: 64,
+    height: 72 / 64,
+    fontWeight: FontWeight.w500,
+  );
+
   static final kH2 = GoogleFonts.ubuntu(
     fontSize: 22,
     height: 28 / 22,
