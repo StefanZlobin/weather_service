@@ -7,5 +7,10 @@ abstract interface class AuthRepository with Disposable {
     required String password,
   });
 
+  Future<void> registerWithEmailAndPassword({
+    required String email,
+    required String password,
+  });
+
   Stream<AuthStatusEnum> get authStatus;
 }

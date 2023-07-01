@@ -5,6 +5,7 @@ import 'package:weather_service/common/domain/db/local_storage.dart';
 import 'package:weather_service/features/auth/data/repositories/auth_repository_impl.dart';
 import 'package:weather_service/features/auth/domain/repositories/auth_repository.dart';
 import 'package:weather_service/features/auth/presentation/blocs/auth/auth_bloc.dart';
+import 'package:weather_service/features/auth/presentation/blocs/is_loading/is_loading_bloc.dart';
 import 'package:weather_service/features/auth/presentation/blocs/show_password/show_password_bloc.dart';
 import 'package:weather_service/features/geolocation/data/repositories/geolocation_repository_impl.dart';
 import 'package:weather_service/features/geolocation/data/source/local_data_source/geolocation_local_client.dart';
@@ -36,6 +37,7 @@ void _registerBlocs() {
 
   // Auth
   getIt.registerLazySingleton<AuthBloc>(() => AuthBloc());
+  getIt.registerLazySingleton<IsLoadingBloc>(() => IsLoadingBloc());
 
   // Weather
   getIt.registerLazySingleton<WeatherBloc>(() => WeatherBloc());
