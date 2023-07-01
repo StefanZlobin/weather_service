@@ -33,6 +33,15 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.1.1"
+  animated_splash_screen:
+    dependency: "direct main"
+    description:
+      path: "."
+      ref: master
+      resolved-ref: c0c1afa79da70f1aac249709220f2cf79804f96e
+      url: "https://github.com/StefanZlobin/animated_splash_screen.git"
+    source: git
+    version: "1.3.1"
   args:
     dependency: transitive
     description:
@@ -685,6 +694,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.1.0"
+  page_transition:
+    dependency: transitive
+    description:
+      name: page_transition
+      sha256: a7694bc120b7064a7f57c336914bb8885acf4f70bb3772c30c2fcfe6a85e43ff
+      url: "https://pub.dev"
+    source: hosted
+    version: "2.0.9"
   path:
     dependency: transitive
     description:
