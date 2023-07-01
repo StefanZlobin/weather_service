@@ -13,6 +13,7 @@ import 'package:weather_service/features/auth/domain/entities/user/user.dart'
 import 'package:weather_service/features/auth/domain/models/email.dart';
 import 'package:weather_service/features/auth/domain/models/password.dart';
 import 'package:weather_service/features/auth/domain/repositories/auth_repository.dart';
+import 'package:weather_service/features/auth/presentation/blocs/is_loading/is_loading_bloc.dart';
 
 part 'auth_bloc.freezed.dart';
 part 'auth_event.dart';
@@ -70,6 +71,8 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     _AuthEventOnLoginSubmitted event,
     Emitter<AuthState> emit,
   ) async {
+    getIt<IsLoadingBloc>().add(const IsLoadingEvent.onLoading());
+
     try {
       final user = u.User(
         email: currentState.email.value,
@@ -83,8 +86,12 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
         password: user.password,
       );
 
+      await Future<void>.delayed(const Duration(milliseconds: 300));
+
       emit(currentState.copyWith(status: FormzSubmissionStatus.success));
     } on Exception catch (e) {
+      await Future<void>.delayed(const Duration(milliseconds: 300));
+
       emit(AuthState.error(error: e.toString()));
     }
   }
@@ -93,6 +100,8 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     _AuthEventOnRegisterSubmitted event,
     Emitter<AuthState> emit,
   ) async {
+    getIt<IsLoadingBloc>().add(const IsLoadingEvent.onLoading());
+
     try {
       final user = u.User(
         email: currentState.email.value,

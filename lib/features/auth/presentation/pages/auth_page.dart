@@ -8,6 +8,7 @@ import 'package:weather_service/common/core/styles/colors/app_colors.dart';
 import 'package:weather_service/common/core/styles/fonts/app_fonts.dart';
 import 'package:weather_service/common/presentation/dialogs/error_dialog.dart';
 import 'package:weather_service/features/auth/presentation/blocs/auth/auth_bloc.dart';
+import 'package:weather_service/features/auth/presentation/blocs/is_loading/is_loading_bloc.dart';
 import 'package:weather_service/features/auth/presentation/pages/widgets/email_form_field.dart';
 import 'package:weather_service/features/auth/presentation/pages/widgets/login_button.dart';
 import 'package:weather_service/features/auth/presentation/pages/widgets/password_form_field.dart';
@@ -23,6 +24,7 @@ class AuthPage extends StatelessWidget {
         state.whenOrNull(
           initial: (_, __, ___, status) {
             if (status == FormzSubmissionStatus.success) {
+              getIt<IsLoadingBloc>().add(const IsLoadingEvent.onLoading());
               return context.push(AppRoutesEnum.weather.routeToPath);
             }
           },
@@ -32,8 +34,11 @@ class AuthPage extends StatelessWidget {
               builder: (context) {
                 return ErrorDialog(
                   error: error,
-                  onPressed: () =>
-                      getIt<AuthBloc>().add(const AuthEvent.onRefreshState()),
+                  onPressed: () {
+                    getIt<IsLoadingBloc>()
+                        .add(const IsLoadingEvent.onLoading());
+                    getIt<AuthBloc>().add(const AuthEvent.onRefreshState());
+                  },
                 );
               },
             );
@@ -53,14 +58,17 @@ class AuthPage extends StatelessWidget {
                 const PasswordFormField(),
                 LoginButton(
                   text: 'Войти',
-                  onPressed: () =>
-                      getIt<AuthBloc>().add(const AuthEvent.onLoginSubmitted()),
+                  onPressed: () {
+                    getIt<AuthBloc>().add(const AuthEvent.onLoginSubmitted());
+                  },
                 ),
                 const SizedBox(height: 24),
                 LoginButton(
                   text: 'Зарегестрироваться',
-                  onPressed: () => getIt<AuthBloc>()
-                      .add(const AuthEvent.onRegisterSubmitted()),
+                  onPressed: () {
+                    getIt<AuthBloc>()
+                        .add(const AuthEvent.onRegisterSubmitted());
+                  },
                 ),
               ],
             ),
