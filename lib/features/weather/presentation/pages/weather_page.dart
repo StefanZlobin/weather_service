@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:weather_service/common/core/service_locator/service_locator.dart';
 import 'package:weather_service/common/core/styles/colors/app_colors.dart';
-import 'package:weather_service/features/weather/presentation/blocs/weather/weather_bloc.dart';
 import 'package:weather_service/features/geolocation/presentation/shared/widgets/geolocation_widget.dart';
 import 'package:weather_service/features/weather/presentation/pages/widgets/humidity_wind_card.dart';
 import 'package:weather_service/features/weather/presentation/pages/widgets/short_weather_data.dart';
@@ -13,11 +11,6 @@ class WeatherPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    getIt<WeatherBloc>().add(const WeatherEvent.onRequestReceiveWeather(
-      lat: 59.937573,
-      lon: 30.319068,
-    ));
-
     return Scaffold(
       body: Container(
         width: MediaQuery.of(context).size.width,

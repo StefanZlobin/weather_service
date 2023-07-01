@@ -49,6 +49,13 @@ dependencies:
   # Network connect
   connectivity_plus: ^4.0.1
 
+  #Animated native splash screen
+  #aka Stefan
+  animated_splash_screen:
+    git:
+      url: https://github.com/StefanZlobin/animated_splash_screen.git
+      ref: master
+
 dev_dependencies:
   flutter_test:
     sdk: flutter

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:weather_service/common/core/enum/app_routes_enum.dart';
+import 'package:weather_service/common/presentation/pages/splash.dart';
 import 'package:weather_service/features/auth/presentation/pages/auth_page.dart';
 import 'package:weather_service/features/weather/presentation/pages/weather_page.dart';
 
@@ -9,7 +10,7 @@ class Routes {
     GoRoute(
       path: AppRoutesEnum.splash.routeToPath,
       name: AppRoutesEnum.splash.routeToName,
-      builder: (context, state) => mockPage(state),
+      builder: (context, state) => const Splash(),
     ),
     GoRoute(
       path: AppRoutesEnum.auth.routeToPath,
