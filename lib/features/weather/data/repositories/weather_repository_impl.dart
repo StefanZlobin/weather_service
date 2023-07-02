@@ -12,9 +12,10 @@ import 'package:weather_service/features/weather/domain/repositories/weather_rep
 class WeatherRepositoryImpl implements WeatherRepository {
   WeatherRepositoryImpl(
     this.dio,
-    this._weatherLocalClient, {
+    this._weatherLocalClient,
+    this._weatherApiClient, {
     this.baseUrl,
-  }) : _weatherApiClient = WeatherApiClient(dio, baseUrl: baseUrl);
+  });
 
   final Dio dio;
   final String? baseUrl;

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:weather_service/common/core/service_locator/service_locator.dart';
 import 'package:weather_service/features/auth/presentation/blocs/auth/auth_bloc.dart';
-import 'package:weather_service/features/auth/presentation/components/button/button.dart';
+import 'package:weather_service/features/auth/presentation/components/button.dart/button.dart';
 
 class LoginButton extends StatelessWidget {
   const LoginButton({super.key});
