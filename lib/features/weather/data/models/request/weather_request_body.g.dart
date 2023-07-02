@@ -14,7 +14,7 @@ WeatherRequestBody _$WeatherRequestBodyFromJson(Map<String, dynamic> json) =>
           $enumDecodeNullable(_$UnitsMeasurementEnumEnumMap, json['units']) ??
               UnitsMeasurementEnum.metric,
       apiKey: json['apiKey'] as String? ?? Config.kApiKeyOpenWeather,
-      numberTimestamps: json['cnt'] as int? ?? 4,
+      numberTimestamps: json['cnt'] as int? ?? 5,
     );
 
 Map<String, dynamic> _$WeatherRequestBodyToJson(WeatherRequestBody instance) =>

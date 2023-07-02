@@ -60,11 +60,7 @@ class AuthPage extends StatelessWidget {
                 const Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   mainAxisSize: MainAxisSize.min,
-                  children: [
-                    LoginButton(),
-                    //SizedBox(height: 24),
-                    RegisterButton(),
-                  ],
+                  children: [LoginButton(), RegisterButton()],
                 ),
               ],
             ),

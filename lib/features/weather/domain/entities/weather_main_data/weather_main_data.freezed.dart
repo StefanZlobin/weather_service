@@ -158,14 +158,15 @@ class __$$_WeatherMainDataCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_WeatherMainData implements _WeatherMainData {
+class _$_WeatherMainData extends _WeatherMainData {
   _$_WeatherMainData(
       {required this.temp,
       required this.feelsLike,
       required this.tempMax,
       required this.tempMin,
       required this.pressure,
-      required this.humidity});
+      required this.humidity})
+      : super._();
 
   @override
   final double temp;
@@ -212,7 +213,7 @@ class _$_WeatherMainData implements _WeatherMainData {
       __$$_WeatherMainDataCopyWithImpl<_$_WeatherMainData>(this, _$identity);
 }
 
-abstract class _WeatherMainData implements WeatherMainData {
+abstract class _WeatherMainData extends WeatherMainData {
   factory _WeatherMainData(
       {required final double temp,
       required final double feelsLike,
@@ -220,6 +221,7 @@ abstract class _WeatherMainData implements WeatherMainData {
       required final double tempMin,
       required final double pressure,
       required final double humidity}) = _$_WeatherMainData;
+  _WeatherMainData._() : super._();
 
   @override
   double get temp;

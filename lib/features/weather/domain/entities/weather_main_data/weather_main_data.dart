@@ -12,4 +12,16 @@ class WeatherMainData with _$WeatherMainData {
     required double pressure,
     required double humidity,
   }) = _WeatherMainData;
+
+  WeatherMainData._();
+
+  String get lvlHumidity {
+    if (humidity >= 70) {
+      return 'Высокая влажность';
+    } else if (humidity >= 40 && humidity < 70) {
+      return 'Средняя влажность';
+    } else {
+      return 'Низкая влажность';
+    }
+  }
 }

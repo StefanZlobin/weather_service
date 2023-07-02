@@ -12,7 +12,7 @@ class WeatherRequestBody {
     required this.lon,
     this.unitsMeasurement = UnitsMeasurementEnum.metric,
     this.apiKey = Config.kApiKeyOpenWeather,
-    this.numberTimestamps = 4,
+    this.numberTimestamps = 5,
   });
 
   final double lat;
