@@ -21,7 +21,8 @@ class WeatherDescription with _$WeatherDescription {
       case WeatherTypeEnum.clear:
         return Assets.images.sunny.image();
       case WeatherTypeEnum.clouds:
-        return Assets.images.rain.image();
+        return Assets.images.sunWithRain
+            .image(); // нет изображения облаков, поэтому беру это
       case WeatherTypeEnum.drizzle:
         return Assets.images.rain.image();
       case WeatherTypeEnum.rain:
@@ -40,7 +41,7 @@ class WeatherDescription with _$WeatherDescription {
       case WeatherTypeEnum.clear:
         return Assets.icons.sun.svg(width: 32, height: 32);
       case WeatherTypeEnum.clouds:
-        return Assets.icons.rain.svg(width: 32, height: 32);
+        return Assets.icons.cloudWithSun.svg(width: 32, height: 32);
       case WeatherTypeEnum.drizzle:
         return Assets.icons.rain.svg(width: 32, height: 32);
       case WeatherTypeEnum.rain:
