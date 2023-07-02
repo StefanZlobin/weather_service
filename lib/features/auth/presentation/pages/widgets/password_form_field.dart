@@ -46,7 +46,10 @@ class PasswordFormField extends StatelessWidget {
                   .add(AuthEvent.onPasswordChanged(password: v)),
             );
           },
-          error: (error) => const SizedBox(),
+          error: (error) {
+            passwordTextController.clear();
+            return const SizedBox();
+          },
         );
       },
     );

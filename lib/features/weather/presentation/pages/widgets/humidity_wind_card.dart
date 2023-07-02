@@ -35,7 +35,7 @@ class HumidityWindCard extends StatelessWidget {
                   const SizedBox(height: 16),
                   _buildData(
                     Assets.icons.wet.svg(width: 24, height: 24),
-                    'Влажность',
+                    weather.mainWeatherData.lvlHumidity,
                     '${weather.mainWeatherData.humidity.ceil()}%',
                   ),
                 ],

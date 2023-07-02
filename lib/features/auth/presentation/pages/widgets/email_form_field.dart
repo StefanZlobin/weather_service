@@ -29,9 +29,14 @@ class EmailFormField extends StatelessWidget {
                       : null,
               onFieldSubmitted: (v) =>
                   getIt<AuthBloc>().add(AuthEvent.onEmailChanged(email: v)),
+              onChanged: (v) =>
+                  getIt<AuthBloc>().add(AuthEvent.onEmailChanged(email: v)),
             );
           },
-          error: (error) => const SizedBox(),
+          error: (error) {
+            emailTextController.clear();
+            return const SizedBox();
+          },
         );
       },
     );
