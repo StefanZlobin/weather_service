@@ -12,6 +12,7 @@ import 'package:weather_service/features/auth/presentation/blocs/is_loading/is_l
 import 'package:weather_service/features/auth/presentation/pages/widgets/email_form_field.dart';
 import 'package:weather_service/features/auth/presentation/pages/widgets/login_button.dart';
 import 'package:weather_service/features/auth/presentation/pages/widgets/password_form_field.dart';
+import 'package:weather_service/features/auth/presentation/pages/widgets/register_button.dart';
 
 class AuthPage extends StatelessWidget {
   const AuthPage({super.key});
@@ -56,19 +57,14 @@ class AuthPage extends StatelessWidget {
                 _buidSubtitle(),
                 const EmailFormField(),
                 const PasswordFormField(),
-                LoginButton(
-                  text: 'Войти',
-                  onPressed: () {
-                    getIt<AuthBloc>().add(const AuthEvent.onLoginSubmitted());
-                  },
-                ),
-                const SizedBox(height: 24),
-                LoginButton(
-                  text: 'Зарегестрироваться',
-                  onPressed: () {
-                    getIt<AuthBloc>()
-                        .add(const AuthEvent.onRegisterSubmitted());
-                  },
+                const Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    LoginButton(),
+                    //SizedBox(height: 24),
+                    RegisterButton(),
+                  ],
                 ),
               ],
             ),

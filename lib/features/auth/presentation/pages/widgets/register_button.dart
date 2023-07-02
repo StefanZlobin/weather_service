@@ -4,8 +4,8 @@ import 'package:weather_service/common/core/service_locator/service_locator.dart
 import 'package:weather_service/features/auth/presentation/blocs/auth/auth_bloc.dart';
 import 'package:weather_service/features/auth/presentation/components/button.dart/button.dart';
 
-class LoginButton extends StatelessWidget {
-  const LoginButton({super.key});
+class RegisterButton extends StatelessWidget {
+  const RegisterButton({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -15,10 +15,10 @@ class LoginButton extends StatelessWidget {
         return state.when(
           initial: (_, __, isValid, ___) {
             return MyButton(
-              text: 'Войти',
+              text: 'Зарегестрироваться',
               isValid: isValid,
               onPressed: () {
-                getIt<AuthBloc>().add(const AuthEvent.onLoginSubmitted());
+                getIt<AuthBloc>().add(const AuthEvent.onRegisterSubmitted());
               },
             );
           },

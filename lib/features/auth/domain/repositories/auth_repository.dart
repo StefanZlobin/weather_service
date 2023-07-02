@@ -2,12 +2,12 @@ import 'package:get_it/get_it.dart';
 import 'package:weather_service/common/core/enum/auth_status_enum.dart';
 
 abstract interface class AuthRepository with Disposable {
-  Future<void> loginWithEmailAndPassword({
+  Future<AuthStatusEnum> loginWithEmailAndPassword({
     required String email,
     required String password,
   });
 
-  Future<void> registerWithEmailAndPassword({
+  Future<AuthStatusEnum> registerWithEmailAndPassword({
     required String email,
     required String password,
   });

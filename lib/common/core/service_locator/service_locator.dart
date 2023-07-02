@@ -1,4 +1,5 @@
 import 'package:dio/dio.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:get_it/get_it.dart';
 import 'package:weather_service/common/core/config/config.dart';
 import 'package:weather_service/common/domain/db/local_storage.dart';
@@ -13,6 +14,7 @@ import 'package:weather_service/features/geolocation/domain/repositories/geoloca
 import 'package:weather_service/features/geolocation/presentation/blocs/geolocation/geolocation_bloc.dart';
 import 'package:weather_service/features/weather/data/repositories/weather_repository_impl.dart';
 import 'package:weather_service/features/weather/data/source/local_data_source/weather_local_client.dart';
+import 'package:weather_service/features/weather/data/source/remote_data_source/weather_api_client.dart';
 import 'package:weather_service/features/weather/domain/repositories/weather_repository.dart';
 import 'package:weather_service/features/weather/presentation/blocs/detailed_weather_card/detailed_weather_card_bloc.dart';
 import 'package:weather_service/features/weather/presentation/blocs/weather/weather_bloc.dart';
@@ -23,7 +25,7 @@ Future<void> setup() async {
   _registerDio();
   _registerBlocs();
   _registerRepositories();
-  _registerStorages();
+  _registerClients();
 }
 
 void _registerDio() {
@@ -50,11 +52,17 @@ void _registerBlocs() {
 
 void _registerRepositories() {
   // Auth
-  getIt.registerLazySingleton<AuthRepository>(() => AuthRepositoryImpl());
+  getIt.registerLazySingleton<AuthRepository>(() => AuthRepositoryImpl(
+        auth: FirebaseAuth.instance,
+      ));
 
   // Weather
   getIt.registerLazySingleton<WeatherRepository>(
-    () => WeatherRepositoryImpl(getIt<Dio>(), getIt<WeatherLocalClient>()),
+    () => WeatherRepositoryImpl(
+      getIt<Dio>(),
+      getIt<WeatherLocalClient>(),
+      getIt<WeatherApiClient>(),
+    ),
   );
 
   // Geolocation
@@ -62,10 +70,11 @@ void _registerRepositories() {
       () => GeolocationRepositoryImpl(getIt<GeolocationLocalClient>()));
 }
 
-void _registerStorages() {
+void _registerClients() {
   // Weather
   getIt.registerLazySingleton(
       () => WeatherLocalClient(LocalStorage(Config.weatherStorage)));
+  getIt.registerLazySingleton(() => WeatherApiClient(getIt<Dio>()));
 
   // Geolocation
   getIt.registerLazySingleton(

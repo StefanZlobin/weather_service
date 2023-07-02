@@ -6,7 +6,9 @@ import 'package:weather_service/common/core/enum/auth_status_enum.dart';
 import 'package:weather_service/features/auth/domain/repositories/auth_repository.dart';
 
 class AuthRepositoryImpl implements AuthRepository {
-  final FirebaseAuth auth = FirebaseAuth.instance;
+  AuthRepositoryImpl({required this.auth});
+  //final FirebaseAuth auth = FirebaseAuth.instance;
+  final FirebaseAuth auth;
 
   final BehaviorSubject<AuthStatusEnum> _authStatusController =
       BehaviorSubject.seeded(AuthStatusEnum.unknown, sync: true);
@@ -16,14 +18,19 @@ class AuthRepositoryImpl implements AuthRepository {
   Stream<AuthStatusEnum> get authStatus => _authStatusController;
 
   @override
-  Future<void> loginWithEmailAndPassword({
+  Future<AuthStatusEnum> loginWithEmailAndPassword({
     required String email,
     required String password,
   }) async {
     try {
       updateAuthStatus(AuthStatusEnum.loading);
-      await auth.signInWithEmailAndPassword(email: email, password: password);
+      await auth.signInWithEmailAndPassword(
+        email: email.trim(),
+        password: password.trim(),
+      );
       updateAuthStatus(AuthStatusEnum.authenticated);
+
+      return AuthStatusEnum.authenticated;
     } on Exception catch (e, st) {
       print('$e, $st');
       updateAuthStatus(AuthStatusEnum.error);
@@ -32,17 +39,19 @@ class AuthRepositoryImpl implements AuthRepository {
   }
 
   @override
-  Future<void> registerWithEmailAndPassword({
+  Future<AuthStatusEnum> registerWithEmailAndPassword({
     required String email,
     required String password,
   }) async {
     try {
       updateAuthStatus(AuthStatusEnum.loading);
       await auth.createUserWithEmailAndPassword(
-        email: email,
-        password: password,
+        email: email.trim(),
+        password: password.trim(),
       );
       updateAuthStatus(AuthStatusEnum.authenticated);
+
+      return AuthStatusEnum.authenticated;
     } on Exception catch (e, st) {
       print('$e, $st');
       updateAuthStatus(AuthStatusEnum.error);
